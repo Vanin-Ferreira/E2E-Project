@@ -17,6 +17,7 @@ jobs:
 
       - name: Build e push da imagem
         run: |
-          IMAGE_NAME=ghcr.io/${{ secrets.GHCR_USERNAME }}/fastapi-app:latest
+          USERNAME=$(echo "${{ secrets.GHCR_USERNAME }}" | tr '[:upper:]' '[:lower:]')
+          IMAGE_NAME=ghcr.io/$USERNAME/fastapi-app:latest
           docker build -t $IMAGE_NAME .
           docker push $IMAGE_NAME
